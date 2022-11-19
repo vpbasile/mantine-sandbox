@@ -1,23 +1,45 @@
-import { MantineProvider, Text, Button, Stack,  } from "@mantine/core";
-import { RichTextEditor } from "@mantine/rte";
-import { DatePicker } from '@mantine/dates';
+
+// << Imports for Mantine
+import {
+  MantineProvider,
+  // Style components
+  useMantineTheme,
+  // Layout components
+  Stack, Table,
+  // Text elements
+  Text, Anchor,
+  // Form elements
+  Button,
+  Paper,
+  MantineThemeOverride,
+  Title
+} from "@mantine/core";
+import { DatePicker } from "@mantine/dates";
+import RichTextEditor from "@mantine/rte";
 import { theme } from "./theme";
 
-export default function App() {
-  const loremIpsum = "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non provident, commodi ex, mollitia sed magni, quae labore quas quibusdam totam odit at perspiciatis pariatur optio accusantium deserunt ratione! Rerum, non."
+// << Import Pieces 
+import { loremIpsum } from './pieces/lorem'
+import { tableDisplay, tablularDataSpoof, tabularDataSet } from './pieces/tabularData'
 
-  return (
-    <MantineProvider theme={theme} withGlobalStyles withNormalizeCSS>
-      <Stack align="center" mt={50}>
-        <Text size="xl" weight={500}>
-          Mantine Sandbox!
-        </Text>
-        <Text size="sm" color="yellow">{loremIpsum}</Text>
-        
-        <RichTextEditor></RichTextEditor>
-        <DatePicker label="Date:"></DatePicker>
-        <Button>Click the button</Button>
-      </Stack>
-    </MantineProvider>
-  );
+export default function App() {
+  const myTheme: MantineThemeOverride = theme;
+
+  const otherData: tabularDataSet = {
+    headers: ["RowName","First","Second","Third","Final"],
+    data:[
+      ["Row One","Thing","Stuff","FIller","Strings"],
+      ["Additional Row","String","Number","Type","Filler"]
+    ]
+  }
+
+  return (<MantineProvider theme={myTheme} withGlobalStyles withNormalizeCSS>
+    <Title order={1} size="h1">
+      Mantine Sandbox!
+    </Title>
+    <Anchor href="https://mantine.dev/" target="_blank">Mantine docs</Anchor>
+    {tableDisplay(otherData)}
+    {/* {tableDisplay(tablularDataSpoof("One2", 12, 6))} */}
+  </MantineProvider>)
 }
+

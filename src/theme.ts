@@ -4,5 +4,5 @@ export const theme: MantineThemeOverride = {
   colorScheme: "dark",
   focusRing: "always",
   respectReducedMotion: true,
-  dateFormat: "YYYY-MM-DD"
+  dateFormat: "YYYY-MM-DD",
 };
