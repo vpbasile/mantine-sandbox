@@ -1,5 +1,9 @@
 // >> All data structures will need these things
-import { dataRow, tabularDataSet } from "../helpers/tabularData"
+import { tabularDataSet } from "../helpers/tabularData"
+
+// Re-usable definitions of the data structure
+export type prototype = { position: number, name: string, symbol: string, mass: number }
+const initialValuesForForm: prototype = { position: 2, name: 'Helium', symbol: 'He', mass: 2.85 }
 
 // >> Define an example set of data
 export const exampleData: tabularDataSet = {
@@ -11,12 +15,5 @@ export const exampleData: tabularDataSet = {
 		{ uid: "056", content: [56, 'Barium', 'Ba', 137.33] },
 		{ uid: "058", content: [58, 'Cerium', 'Ce', 140.12] },
 	],
-	formObject: {
-		initialValues: {
-			position: 2,
-			name: 'Helium',
-			symbol: 'He',
-			mass: '2.85',
-		}
-	}
+	formObject: { initialValues: initialValuesForForm }
 }

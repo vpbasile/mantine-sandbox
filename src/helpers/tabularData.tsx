@@ -49,7 +49,6 @@ export function tableDisplay(dataSet: tabularDataSet) {
 		if (rowContents.length > colCount) colCount = rowContents.length
 		return <tr>{rowContents.map((col) => { return <td>{col}</td> })}<td>Edit</td><td>Delete</td></tr>
 	});
-	console.log(`Columns: ${colCount}`);
 	return (
 		<Table highlightOnHover withBorder horizontalSpacing='sm' verticalSpacing='sm' width='75%' bg={'black'} >
 			{headerContents}

@@ -5,7 +5,7 @@ import { numberTOuid } from "../helpers/stringFunc";
 import { dataRow, tabularDataSet } from "../helpers/tabularData"
 
 // Using the Elements data structur
-import { exampleData } from '../dataStructures/Elements'
+import { prototype, exampleData } from '../dataStructures/Elements'
 
 type myProps = {
 	newFormOpened: boolean;
@@ -14,10 +14,14 @@ type myProps = {
 	addNewRow: (newRow: dataRow) => void;
 }
 
-export default function formNew(props: myProps) {
+export default function FormNew(props: myProps) {
+	const formObject = exampleData.formObject;
+	let nowForm = useForm({initialValues:formObject.initialValues})
+
 	// Props
 	const newFormOpened = props.newFormOpened;
 	const setnewFormOpened = props.setnewFormOpened;
+	// Dataset is passed down to the component
 	const dataSet = props.dataSet;
 	const addNewRow = props.addNewRow;
 
@@ -27,10 +31,11 @@ export default function formNew(props: myProps) {
 	// A field for each data column
 	const dataFields = props.dataSet.headers;
 	function handleFormEntry() {
+		let x:prototype = nowForm.values;
 		const newUID = numberTOuid(dataSet.data.length, 3);
 		addNewRow({
 			uid: newUID,
-			content: ["New", "New", "New", "New"]
+			content: [x.position , x.name, x.symbol, x.mass]
 		});
 		setnewFormOpened(false);
 	}
